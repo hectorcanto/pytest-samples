@@ -1,0 +1,47 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[pipenv]
+allow_prereleases = true
+# for black only
+
+[packages]
+loguru = "*"
+requests = "*"
+
+[dev-packages]
+black = "*"
+docstr-coverage = "*"
+flake8 = "*"
+flake8-docstrings = "*"
+pydocstyle = "*"
+safety = "*"
+
+pre-commit = "*"
+diagrams = "*"
+handsdown = "*"
+sphinx = "*"
+
+pylint = "==2.9.6"
+pylint-common = "*"
+pylint-pytest = "*"
+
+pytest = "*"
+pytest-cov = "*"
+pytest-env = "*"
+pytest-mock = "*"
+pytest-ordering = "*"
+pytest-sugar = "*"
+factory-boy = "*"
+deepdiff = "==5.2.3"
+delayed-assert = "*"
+
+ipython = "*"
+ipdb = "*"
+arrow = "*"
+
+
+[requires]
+python_version = "3.9"
