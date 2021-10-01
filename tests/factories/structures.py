@@ -49,6 +49,7 @@ class Structure(NamedTuple):
 
     created_at: datetime
     updated_at: int
+    last_login : datetime
 
     nested: Inner
 
@@ -66,6 +67,7 @@ class StructureFactory(Factory):
     salary = FuzzyFloat(20_000, 50_000, 2)
     text = Faker("sentence", nb_words=5)
     category = FuzzyChoice(Category.__members__)
+    ip = Faker("")
 
     first_name = Faker("first_name")
     last_name = Faker("last_name")
@@ -80,11 +82,10 @@ class StructureFactory(Factory):
     )
     updated_at = Faker(
         "unix_time",
-        start_datetime=arrow.utcnow().shift(weeks=-3).date(),
+        start_datetime=arrow.utcnow().shift(weeks=-3).datetime,
         end_datetime=datetime.utcnow()
     )
-
-
+    last_login = LazyFunction(lambda: fake_it.date_time_between("-1m", "-1w"))
 
 
 StructureDictFactory = generate_dict_factory(StructureFactory)

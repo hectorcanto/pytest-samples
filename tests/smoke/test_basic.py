@@ -62,7 +62,6 @@ def test_with_params(sut, entry, expected):
     assert result == expected, "Function should return double"
 
 
-@pytest.mark.current
 def test_raise():
     with pytest.raises(ValueError) as exc_info:
         SystemUnderTest.raiser(msg="exception msg")

@@ -40,6 +40,7 @@ ipdb = "*"
 arrow = "*"
 freezegun = "*"
 requests-mock = "*"
+timeago = "*"
 
 [requires]
 python_version = "3.9"

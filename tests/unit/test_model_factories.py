@@ -4,7 +4,7 @@ from factory.alchemy import SQLAlchemyModelFactory
 from source.models import User
 
 from datetime import datetime
-import pytest
+
 
 class UserFactory(SQLAlchemyModelFactory):
     class Meta:
@@ -14,13 +14,11 @@ class UserFactory(SQLAlchemyModelFactory):
     created_at = LazyFunction(lambda: datetime(2021, 10, 2))
 
 
-@pytest.mark.current
 def test_model_factory():
     user = UserFactory.build()
     assert user.created_at == datetime(2021, 10, 2)
 
 
-@pytest.mark.current
 def test_model_factory_as_dict():
 
     my_dict = factory.build(dict, FACTORY_CLASS=UserFactory)
