@@ -41,6 +41,7 @@ arrow = "*"
 freezegun = "*"
 requests-mock = "*"
 timeago = "*"
+pytime = "*"
 
 [requires]
 python_version = "3.9"
