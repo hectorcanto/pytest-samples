@@ -18,6 +18,6 @@ current-tests:  ## Run tests marked as current
 clean-md:  # #Copy slides to a separate file without extra
 	@cp slides/testing_efectivo_master.md slides/testing_efectivo.md
 	@sed -i -e "/comment/d" -e "/<\?aside/d" -e "/↓/d" slides/testing_efectivo.md
-	@echo 'sed -i -e "/./b;:n;N;s/\n$//;tn" slides/testing_efectivo.md'
+	#sed -i -e "/./b;:n;N;s/\n$//;tn" slides/testing_efectivo.md
 
 .PHONY: help slides browser current-tests clean-md

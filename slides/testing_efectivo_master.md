@@ -1,3 +1,23 @@
+[comment]: # (This presentation was made with markdown-slides)
+[comment]: # (CommonMark compliant)
+[comment]: # (mdslides presentation.md --include media)
+[comment]: # (make slides)
+
+[comment]: # (THEME = serif)
+[comment]: # (CODE_THEME = monokai)
+[comment]: # "You can also use quotes instead of parenthesis"
+
+[comment]: # (Pass optional settings to reveal.js:)
+[comment]: # (controls: true)
+[comment]: # (keyboard: true)
+[comment]: # (markdown: { smartypants: true })
+[comment]: # (showSlideNumber: 'speaker')
+[comment]: # (showNotes: false)
+[comment]: # (hash: false)
+[comment]: # (respondToHashChanges: false)
+[comment]: # (pdfMaxPagesPerSlide: 1)
+[comment]: # ( pdfSeparateFragments: false )
+[comment]: # (Other settings are documented at https://revealjs.com/config/)
 
 ### Testing efectivo con Pytest
 
@@ -7,21 +27,35 @@
 
 [PyConEs 2021](https://2021.es.pycon.org/)
 
+<aside class="notes">
 It will published in slideshare and Github
+</aside>
+
+[comment]: # (!!!)
 
 ## Objetivo
 
 Nos centraremos en *testing unitario con Pytest*, pero
 muchas cosas también sirven para otros frameworks y lenguajes
 
+<aside class="notes">
 Esta será una charla principalmente practica
 pero hablaremos un poco de por qué es importante para meternos en materia
+</aside>
+
+[comment]: # (!!!)
 
 ## Por qué pytest
 
 Es un framework maduro y muy potente
 
 Muy bien documentado y compatible con muchas herramientas
+
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
 
 ### Por qué efectividad en testing
 
@@ -30,8 +64,14 @@ El Testing ocupa buena parte de nuestro tiempo programando
 - Mejor testing, mejor Software
 - Cuanto más efectivos, más tiempo para otras cosas
 
+`↓`
+
+<aside class="notes">
 probabl. 50% del tiempo
 Si reducimos ese tiempo a la mitad, ahorraremos el 25% de nuestro tiempo trabajando
+</aside>
+
+[comment]: # (|||)
 
 ### Testear es importante
 
@@ -42,7 +82,13 @@ Si reducimos ese tiempo a la mitad, ahorraremos el 25% de nuestro tiempo trabaja
 
 Artículo: [Tips and tricks for unit tests](https://medium.com/worldsensing-techblog/tips-and-tricks-for-unit-tests-b35af5ba79b1)
 
+`↓`
+
+<aside class="notes">
 More about this in this article I wrote a couple of year ago
+</aside>
+
+[comment]: # (|||)
 
 #### Efectividad significa
 
@@ -50,8 +96,13 @@ More about this in this article I wrote a couple of year ago
 - Desarrollo fácil y código mantenible
 - Accesible y leíble para todo el mundo
 
+`↓`
+<aside class="notes">
 Que se facil ampliar los casos, crear nuevos tests
 Para nuestros compañeros y para nuestro yo futuro
+</aside>
+
+[comment]: # (|||)
 
 #### Como conseguimos esta efectividad
 
@@ -61,7 +112,11 @@ Para nuestros compañeros y para nuestro yo futuro
 - Buenas prácticas generales de código
 - Estrategias y Sentido común
 
+<aside class="notes">
 Ahora veremos ejemplos reales
+</aside>
+
+[comment]: # (!!!)
 
 ## Fases de un test
 
@@ -73,10 +128,15 @@ Los test se dividen en 3 fases conocidas como la triple AAA
 
 Propondremos ideas para las tres
 
+`↓`
+<aside class="notes">
 Pasamos a la parte práctica
 Todos los ejemplos son ejecutables y están disponibles en Github
 ...
 Pero antes empezaremos por cómo lanzamos nuestra suite
+</aside>
+
+[comment]: # (|||)
 
 ## Lanzar la Suite de tests
 
@@ -85,6 +145,12 @@ Pero antes empezaremos por cómo lanzamos nuestra suite
 - Selección de test
 
 *Solo lanzaremos lo que necesitemos*
+
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
 
 #### Opciones de pytest
 
@@ -96,7 +162,12 @@ pytest -k users
 ```
 Podemos filtrara de muchas maneras
 
+`↓`
+<aside class="notes">
 El primer comando que quiero que recordéis es el help
+</aside>
+
+[comment]: # (|||)
 
 #### Suite: repetir test fallidos
 
@@ -109,10 +180,15 @@ Daremos prioridad a los tests fallidos
 
     Plugin: pytest-xdist
 
+`↓`
+<aside class="notes">
 Estas son algunas opciones útiles para reducir el número de tests ejecutados
 OS añado pytest-xdist que permite ejecutar test en paralelo
 Es un plugin complicado, que os puede dar problemas, pero merece la pena intentarlo
 La reducción de tiempo es muy grande y lo agradecermos en suites muy grande
+</aside>
+
+[comment]: # (|||)
 
 #### Suite: tests específicos
 
@@ -129,10 +205,16 @@ pytest -k users
 ```
 El _naming_ es importante
 
+`↓`
+<aside class="notes">
 Esto nos permite seleccionar tests por una parte de su nombre
 Clean Code
+</aside>
+
+[comment]: # (|||)
 
 #### Suite: marcadores
+
 
 ```python
 @pytest.mark.slow
@@ -149,7 +231,12 @@ pytest -m "smoke and unit"
 
 Ejemplos: smoke, unit, integration, current, slow
 
+`↓`
+<aside class="notes">
 Tests marcados con current, con captura de terminal y verbosidad
+</aside>
+
+[comment]: # (|||)
 
 #### Suite: marcadores globales
 
@@ -164,7 +251,12 @@ class TestClass:
 ```
 Es fácil marcar grupos de tests
 
+`↓`
+<aside class="notes">
 Esto nos permite seleccionar tests por una parte de su nombre
+</aside>
+
+[comment]: # (|||)
 
 #### Suite: structure
 
@@ -185,9 +277,14 @@ tests/
 └── __init__.py
 ```
 
+`↓`
+<aside class="notes">
 Ahora nos vamos a meter un poco con la estructura del directorio de tests
 Es bueno tener una estructura recurrente y esta nos sirve para los marcadores
 Fijaros en smoke, unit, integration, persistance ..
+</aside>
+
+[comment]: # (|||)
 
 #### Suite: marcadores automáticos
 
@@ -200,7 +297,12 @@ def pytest_collection_modifyitems(items):
 
 Coloca esto en `tests/conftest.py`
 
+`↓`
+<aside class="notes">
 Asi marcaremos todos los tests de un subdirectorio X com un marcador dado
+</aside>
+
+[comment]: # (|||)
 
 #### Recomendación: smoke tests
 
@@ -211,6 +313,13 @@ Asi marcaremos todos los tests de un subdirectorio X com un marcador dado
 Los lanzaremos los primeros, local y CI
 
 Evitaremos sustos y ahorraremos tiempo
+
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
+
 
 #### Suite: ordenación
 
@@ -226,8 +335,13 @@ Dejaremos los lentos para el final
 
     Plugins: pytest-ordering
 
+`↓`
+<aside class="notes">
 De todas formas, es bueno ejecutar los tests en orden aleatoria y cambiante
 para evitar efectos colaterales entre tests
+</aside>
+
+[comment]: # (|||)
 
 ### Suite: entorno
 
@@ -245,7 +359,12 @@ Separamos entornos local y de test
 
     Plugin: pytest-env
 
+`↓`
+<aside class="notes">
 Esto nos permite separar el entorno local del de la suite de test completamente
+</aside>
+
+[comment]: # (|||)
 
 ### Suite: entorno II
 
@@ -257,16 +376,27 @@ def test_with_different_env_vars(monkeypatch):
 
     Fixture: monkeypatch
 
+<aside class="notes">
 Si queremos cambiar el entorno puntualmente
 monkeypatch es un fixture muy util que veremos de nuevo mas adelante
+</aside>
+
+[comment]: # (!!!) ---------------------------------------
 
 ### Setup
+
 
 - Parametrization
 - Fixtures
 - Factories
 
 También _Arrange_ o Preparación
+
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
 
 #### Parametrización
 
@@ -285,6 +415,12 @@ En vez de hacer un test para cada caso
 
 Reutilizaremos un test para todas las entradas
 
+`↓`
+<aside class="notes">
+</aside>``
+
+[comment]: # (|||)
+
 ### Fixtures
 
 Fixtures es el conjunto de elementos que establecemos para
@@ -293,6 +429,12 @@ crear un entorno concreto.
 - los datos que preparamos
 - El sistema en un estado concreto
 - Elementos activos con el comportamiento "trucado"
+
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
 
 #### Pytest fixture
 
@@ -306,12 +448,18 @@ def example_fixture()
 ```
 Fixtures con setup, teardown o ambos
 
+
+`↓`
+<aside class="notes">
 Podemos devolver una estructura de datos,
 un elemento modificado
 un objeto trucado
 ...
 Y en el teardown limpiamos, recuperamos todoa el estado normal
 quitamos datos de ficheros y bases de datos
+</aside>
+
+[comment]: # (|||)
 
 #### Ejemplo de fixture
 
@@ -324,10 +472,15 @@ def load_data(db_client):
     db_client.delete(my_user) 
 ```
 
+`↓`
+<aside class="notes">
 Aquí vemos otro ejemplo típic.
 Fijáos que esta fixture tiene un parámetro 'db_client' que es otra fixture
 Como podéis ver se pueden enlazar fixtures
 Pero ojo, algunas fixtures pueden no ser compatibles con otras, pero el framework os lo chiva
+</aside>
+
+[comment]: # (|||)
 
 #### Usar una fixture
 
@@ -343,8 +496,14 @@ Colocad vuestras fixtures en cualquier `conftest.py`
 
 para no tener que importarlas
 
+
+`↓`
+<aside class="notes">
 Se cargan automáticamente cuando se necesitan
 Tenéis un ejemplo de una fixture que utilizamos como parámetro, y otra que no.
+</aside>
+
+[comment]: # (|||)
 
 #### Reutilizar fixtures 
 
@@ -356,9 +515,14 @@ def test_settings():
 
 Scopes: sesión, módulo, clase o función
 
+`↓`
+<aside class="notes">
 Hay fixtures que sabemos que con ejecutarlas una vez es suficiente
 Usando scope podemos limitar la acción de una fixture a una clase, modulo o toda la sesion
 Esto es muy típico para crear y destruír tablas, limpiar caché, borrar archivos
+</aside>
+
+[comment]: # (|||)
 
 #### Fixtures automáticas
 
@@ -373,6 +537,12 @@ Se autoejecuta sola
 
 Se apoya en otra fixture anterior
 
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
+
 ### Fixtures de datos
 
     Recomendación: crear datos para fixtures *programáticamente*
@@ -383,10 +553,15 @@ Se apoya en otra fixture anterior
 
 - Evitar JSON crudos, archivos de texto ...
 
+`↓`
+<aside class="notes">
 Desde Python
 en las funciones, nos centramos en la diferencia, qué es lo relevante para el tests
 en los datos hay mucha informacion repetida, que crea ruído
 En esta parte me voy a centra en las factorías, que es la manera más eficiente de crear datos
+</aside>
+
+[comment]: # (|||)
 
 #### Setup: Factory
 
@@ -405,9 +580,14 @@ assert other.name == "another value"
 
     Librería & plugin: factoryboy, pytest-factoryboy
 
+`↓`
+<aside class="notes">
 Y en concreto me centraré en las librerías Factory y Faker
 StubFactory es el caso más simple de factoría, con la que creamos un objeto
 Podemos designar valores por defecto, o designar cuando instanciamos
+</aside>
+
+[comment]: # (|||)
 
 #### Factory & Faker
 
@@ -426,11 +606,18 @@ Genera valores a discreción
 
     Librería: Faker
 
+`↓`
+<aside class="notes">
 Y el complemente perfecto de factoryboy es faker
 Una librería para generar valores aleatorios o en determinados rangos
 Podemos usarlas en tiempo de ejecución o para generar algo y guardarlos permanentemente
+</aside>
+
+[comment]: # (|||)
 
 #### Model Factory
+
+Se puede usar con Django, SQLAlchemy y Pymongo
 
 ```python
 from factory import alchemy, RelatedFactory
@@ -448,14 +635,18 @@ class UserFactory(alchemy.SQLAlchemyModelFactory):
         end_datetime=datetime(2019, 12, 31)
     )
 ```
-Se puede usar con Django, SQLAlchemy y Pymongo
 
+`↓`
+<aside class="notes">
 El siguiente caso, más complejo, son las factorías de Modelos
 Estas, nos permiten escribir en base de datos, o generar objectos pre-escritura
 Esto es super potente por que en vez de mantener fixtures en SQL, que es muy costoso
 lo hacemos en Python, directamente basándonos en nuestros modelos
 Prestad especial atención a la RelatedFactoyr, esto nos permite crear modelos a través
 de relaciones, y lo resuelve el propio ORM
+</aside>
+
+[comment]: # (|||)
 
 #### Batches & Dict Factory
 
@@ -468,15 +659,25 @@ class UserDictFactory(DictFactory)
 ```
 Genera _inputs_ para tu API o función 
 
+<aside class="notes">
 No sólo eso, si no que podemos generar múltiples instancias en masa (batch)
 o generar diccionarios equivalentes que podemos utilizar para atacar nuestra API
 La diferencian entre build y create es que una escribe en DB y la otra no
 Y hasta aquí, el mundo de las factories da para mucho más
+</aside>
+
+[comment]: # (!!!)
 
 ### Ejecución o Act
 
 - Controlar el tiempo
 - Test doubles: mocks y familia
+
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
 
 #### Freezegun
 
@@ -494,6 +695,12 @@ def test_2012():
 Para el tiempo a tu antojo
 
     Library: freezegun
+
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
 
 #### Freezer
 
@@ -513,6 +720,12 @@ def test_freeze_decorator():
 
     Fixture: freezer
 
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
+
 #### Otras librerías temporales
 
 timeago -  moment - pytime - arrow
@@ -524,9 +737,20 @@ pytime.next_month('2015-10-1')  # again, no-more-deltas
 arrow.utcnow().span('hour')  # 2 datetimes in one line
 ```
 
+<aside class="notes">
+</aside>
+
+[comment]: # (!!!)
+
 ### Ejecución: test doubles
 
 Los Test doubles substituyen a algún elemento activo con el comportamiento deseado
+
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
 
 #### Tipos de test doubles
 
@@ -539,13 +763,24 @@ Los Test doubles substituyen a algún elemento activo con el comportamiento dese
 
 `martinfowler.com/bliki/TestDouble.html`
 
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
+
 ### Mock library
 
 La mayoría de nuestros dobles se implementan con mock
 
     Library: mock - Plugin: pytest-mock  - Fixture: mocker
 
+`↓`
+<aside class="notes">
 Vamos a ver algunos ejemplos reales
+</aside>
+
+[comment]: # (|||)
 
 #### Python mocks
 
@@ -559,8 +794,13 @@ def test_mock_patching(mocker):
     assert mocked.called_once()
 ```
 
+`↓`
+<aside class="notes">
 Normalmente parcheamos métodos y funciones
 aunque también atributos
+</aside>
+
+[comment]: # (|||)
 
 #### Stubs
 
@@ -575,9 +815,14 @@ def test_stubbing(monkeypatch):
     assert os.path.exists("/believe/me/I/exist")
 ```
 
+`↓`
+<aside class="notes">
 Para parchear os recomiendo hacerlo con monkeypatch, que viene incluido en pytest base
 por debajo usa la librería mock. Tiene la ventaja de que desmonta el mock después de la ejecución
 y la desventaja que solo se puede usar con 'scope' de función
+</aside>
+
+[comment]: # (|||)
 
 #### Espía
 
@@ -592,7 +837,12 @@ def test_with_spy(mocker):
 ```
 No intercepta, solo registra llamadas
 
+`↓`
+<aside class="notes">
 Realmente, todos los mocks tienen un espía, pero los demás hacen intercepción
+</aside>
+
+[comment]: # (|||)
 
 #### Interceptores
 
@@ -610,8 +860,12 @@ Intercepta llamadas y devuelve lo que quieras
 
     Library: requests_mock
 
+<aside class="notes">
 Y de ejecución nos quedan los interceptores puros
 Solo hablaremos de esta, pero hay muchos más, para otrós protocolos tambien
+</aside>
+
+[comment]: # (!!!)
 
 ### Validación
 
@@ -626,15 +880,26 @@ def test_one():
 ```
 Validamos sentencias lógicas
 
+
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
+
 #### Mensajes de error
 
 ```python
 response = requests.get(url)
 assert response.json() == expected, response.text()
 ```
-En caso de `AssertionError`
+En caso de `AssertionError`, exponemos info extra
 
-exponemos info extra
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
 
 #### Comparaciones
 
@@ -644,9 +909,13 @@ import pytest, math
 assert 2.2 == pytest.approx(2.3, 0.1)
 assert math.isclose(2.2, 2.20001, rel_tol=0.01)
 ```
-No perdáis el tiempo 
+No perdáis el tiempo con errores de bulto y redondeos
 
-con errores de bulto y redondeos
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
 
 #### Comparaciones: listas y sets
 
@@ -658,13 +927,18 @@ list_without_duplicates = list(set(my_list))
 diff = set(my_list) ^ set(other_list)
 assert not diff
 ```
-No os volváis locos con valores repetidos 
+'No os volváis locos con valores repetidos y bucles comparando listas
 
-ni bucles comparando listas
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
 
 ##]# Comparaciones: dicts
 
 Comparar diccionarios y listas es duro.
+
 
 ```python
 from deepdiff import DeepDiff
@@ -677,6 +951,12 @@ def test_dicts(parameter, expected):
 No perdáis el tiempo ordenando dicts y calculando borrando elementos difíciles c
 
     Library: deepdiff
+
+`↓`
+<aside class="notes">
+</aside>
+
+[comment]: # (|||)
 
 #### Comprobaciones pospuestas
 
@@ -694,8 +974,13 @@ def test_delayed_response(requests_mock):
 
     Library: delayed-assert
 
+`↓`
+<aside class="notes">
 Si por algún motivo queremos hacer todas las comprobaciones de una vez o al final
 utilizaremos delayed assert, que además nos da un retorno más trabajado
+</aside>
+
+[comment]: # (|||)
 
 #### Delayed assert prompt
 
@@ -718,6 +1003,11 @@ E               expect(response.status_code == 200, response.status_code)
 ../../../.local/share/virtualenvs/effective_testing-QL_w0uj8/lib/python3.9/site-packages/delayed_assert/delayed_assert.py:74: AssertionError
 ```
 
+<aside class="notes">
+</aside>
+
+[comment]: # (!!!)
+
 ### Validar logs
 
 Los logs son ultra-importantes
@@ -725,7 +1015,12 @@ Los logs son ultra-importantes
 - Flujo de programa y control de errores
 - Especialmente importante en microservicios y serverless
 
+`↓`
+<aside class="notes">
 Lo último que veremos en validación serán los log
+</aside>
+
+[comment]: # (|||)
 
     
 #### Captura logs
@@ -755,8 +1050,12 @@ def test_log_capture(request, caplog):
 
     Fixture: caplog, capsys, capfd
 
+<aside class="notes">
 Aquí hay un extra muy interesante, que es la posibilidad de parar la captura
 lo que es imprescindible para poder meternos con el debugger
+</aside>
+
+[comment]: # (!!!)
 
 ### Bola extra: tests y debugger
 
@@ -770,13 +1069,24 @@ PYTHONBREAKPOINT=ipdb.set_trace pytest -m current -s
 
     Usa los puntos de ruptura del IDE
 
+<aside class="notes">
+</aside>
+
+[comment]: # (!!!)
+
 ### Ideas finales
 
 - ""Los tests son un pérdida de tiempo"""
   - Realmente, nos ahorran mucho tiempo
 - Tratar los tests como ciudadanos de primera:
+  - style, docstrings, comments ...
 - No hayh proyecto pequeño para tener tests
 - Pensad en vuestro yo del futuro
+
+<aside class="notes">
+</aside>
+
+[comment]: # (!!!)
 
 ### Recomendaciones
 
@@ -784,6 +1094,11 @@ PYTHONBREAKPOINT=ipdb.set_trace pytest -m current -s
   - seguro que hay una librería o receta que lo hace por vosotros
 - Leed y releed la documentación
 - Los frameworks son vuestros amigos
+
+<aside class="notes">
+</aside>
+
+[comment]: # (!!!)
 
 ### Summary
 
@@ -795,6 +1110,11 @@ Librerías: factoryboy, faker, deepdict, freezegun, moment, ipdb
 
 https://docs.pytest.org/
 https://docs.pytest.org/en/latest/reference/plugin_list.html
+
+<aside class="notes">
+</aside>
+
+[comment]: # (!!!)
 
 ### Se ha quedado fuera
 
