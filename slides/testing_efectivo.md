@@ -5,6 +5,8 @@
 
 [slideshare.net/HectorCanto](https://www.slideshare.net/HectorCanto/)
 
+[github.com/hectorcanto/pytest-samples](https://github.com/hectorcanto/pytest-samples)
+
 [PyConEs 2021](https://2021.es.pycon.org/)
 
 It will published in slideshare and Github
@@ -137,6 +139,8 @@ Clean Code
 ```python
 @pytest.mark.slow
 @pytest.mark.current
+@pytest.mark.skip(reason="whatever")
+@pytest.mark.xfail
 def test_this():
     ...
 ```
@@ -166,7 +170,7 @@ Es fácil marcar grupos de tests
 
 Esto nos permite seleccionar tests por una parte de su nombre
 
-#### Suite: structure
+#### Suite: Estructura
 
 ```bash
 tree tests/ --dirsfirst
@@ -224,7 +228,7 @@ El order es importante para `smoke` y CI
 
 Dejaremos los lentos para el final
 
-    Plugins: pytest-ordering
+    Plugins: pytest-ordering, pytest-randomly
 
 De todas formas, es bueno ejecutar los tests en orden aleatoria y cambiante
 para evitar efectos colaterales entre tests
@@ -260,7 +264,7 @@ def test_with_different_env_vars(monkeypatch):
 Si queremos cambiar el entorno puntualmente
 monkeypatch es un fixture muy util que veremos de nuevo mas adelante
 
-### Setup
+## Setup
 
 - Parametrization
 - Fixtures
@@ -294,7 +298,7 @@ crear un entorno concreto.
 - El sistema en un estado concreto
 - Elementos activos con el comportamiento "trucado"
 
-#### Pytest fixture
+#### Pytest fixtures
 
 ```python
 @pytest.fixture
@@ -584,7 +588,7 @@ y la desventaja que solo se puede usar con 'scope' de función
 ```python
 def test_with_spy(mocker):
     url = "https://2021.es.pycon.org/"
-    spy = mocker.patch.object(requests, "get", wraps=requests.get)
+    spy = mocker.spy(requests, "get", wraps=requests.get)
     response = requests.get(url)
     assert response.status_code -= 200
     spy.assert_called_once(), spy.mock_calls
@@ -606,6 +610,7 @@ def test_with_http_interceptor(requests_mock):
     
     assert "key" in response.json()
 ```
+
 Intercepta llamadas y devuelve lo que quieras
 
     Library: requests_mock
@@ -662,9 +667,7 @@ No os volváis locos con valores repetidos
 
 ni bucles comparando listas
 
-##]# Comparaciones: dicts
-
-Comparar diccionarios y listas es duro.
+#### Comparaciones: dicts
 
 ```python
 from deepdiff import DeepDiff
@@ -674,7 +677,10 @@ def test_dicts(parameter, expected):
     diff = DeepDiff(result, expected, exclude_paths=(f"root['updated_at']",), ignore_order=True)
     assert not diff, diff
 ```
-No perdáis el tiempo ordenando dicts y calculando borrando elementos difíciles c
+
+No perdáis el tiempo ordenando dicts 
+
+ni calculando y borrando elementos difíciles 
 
     Library: deepdiff
 
@@ -772,11 +778,12 @@ PYTHONBREAKPOINT=ipdb.set_trace pytest -m current -s
 
 ### Ideas finales
 
-- ""Los tests son un pérdida de tiempo"""
+- "Los tests son un pérdida de tiempo"
   - Realmente, nos ahorran mucho tiempo
 - Tratar los tests como ciudadanos de primera:
-- No hayh proyecto pequeño para tener tests
+- No hay proyecto pequeño para tener tests
 - Pensad en vuestro yo del futuro
+- Testead más que el "happy path"
 
 ### Recomendaciones
 
@@ -787,13 +794,12 @@ PYTHONBREAKPOINT=ipdb.set_trace pytest -m current -s
 
 ### Summary
 
-Fixtures: monkeypatch, mocker, requests_mock, caplog, parametrize, mark
+_Fixtures_: monkeypatch, mocker, requests_mock, caplog, parametrize, mark
 
-Plugins: env, ordering, xdist
-
-Librerías: factoryboy, faker, deepdict, freezegun, moment, ipdb
+_Librerías_: factoryboy, faker, deepdict, freezegun, moment, ipdb
 
 https://docs.pytest.org/
+
 https://docs.pytest.org/en/latest/reference/plugin_list.html
 
 ### Se ha quedado fuera
@@ -801,8 +807,11 @@ https://docs.pytest.org/en/latest/reference/plugin_list.html
 Antipatrones, AWS, Docker, DBs, frameworks, asyncio
 
 https://github.com/spulec/moto
+
 https://github.com/localstack/localstack
+
 http://blog.codepipes.com/testing/software-testing-antipatterns.html
+
 https://www.yegor256.com/2018/12/11/unit-testing-anti-patterns.html
 
 ### Gracias
@@ -810,3 +819,7 @@ https://www.yegor256.com/2018/12/11/unit-testing-anti-patterns.html
 Espero que os gustara :)
 
 Preguntas, sugerencias, errores ...?
+
+https://github.com/hectorcanto/pytest-samples
+
+https://www.slideshare.net/HectorCanto
