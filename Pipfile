@@ -11,6 +11,7 @@ allow_prereleases = true
 loguru = "*"
 requests = "*"
 sqlalchemy = "*"
+moment = "*"
 
 [dev-packages]
 black = "*"
