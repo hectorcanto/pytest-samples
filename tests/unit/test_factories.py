@@ -1,7 +1,8 @@
-from factory import StubFactory, DictFactory, Factory
+from factory import StubFactory, DictFactory, Factory, fuzzy
 from typing import NamedTuple
 import factory
 
+import pytest
 
 class ObjectFactory(StubFactory):
     name: str = "value"
@@ -13,6 +14,7 @@ class NameDictFactory(DictFactory):
 
 class Simple(NamedTuple):
     style: str
+    color: str
 
 
 class SimpleFactory(Factory):
@@ -20,6 +22,7 @@ class SimpleFactory(Factory):
         model = Simple
 
     style = factory.Faker("text")
+    color = fuzzy.FuzzyChoice(["red", "green", "blue"])
 
 
 def test_stub_factory():
@@ -39,3 +42,19 @@ def test_dict_factory():
 def test_named_tuple_factory():
     named_tuple = SimpleFactory(style="casual")
     assert named_tuple.style == "casual"
+
+
+@pytest.mark.current
+def test_batch_factories():
+    """Demo how to generate in batches"""
+
+    two = SimpleFactory.create_batch(style="same", size=2)
+    # both factories will have the same style
+    assert two[0].style == "same"
+    assert two[1].style == "same"
+
+    another_two = SimpleFactory.create_batch(style="cool", color=factory.Iterator(["red", "blue"]), size=4)
+    # all objects will have a `cool` style, and specific colors (not random)
+    assert another_two[0].color == "red"
+    assert another_two[1].color == "blue"
+    assert another_two[3].color == "blue"
