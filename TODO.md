@@ -7,6 +7,8 @@
   - generated fixtures
   - dual fixtures
   - fixtures with attributes
+- api tests
+- log tests (capture is messy sometimes)
 
 ## Tooling
 

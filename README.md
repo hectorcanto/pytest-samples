@@ -55,7 +55,7 @@ pytest -m unit
 - [Smoke tests](tests/smoke/)
 - [Unit tests](tests/unit/)
   - delayed assert: sometimes is useful to run several tests over the same execution,
-    but we still one to see them as separated ones
+    but we still want to see them as separated ones
 
 ## Recommended plugins and libraries
 

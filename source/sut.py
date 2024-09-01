@@ -1,6 +1,6 @@
-from typing import Optional
+from typing import Union
 
-Numeric = Optional[int, float]
+Numeric = Union[int, float]
 
 class SystemUnderTest:
 
