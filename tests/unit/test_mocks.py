@@ -30,7 +30,7 @@ def test_mock_side_effect(mocker):
     with pytest.raises(KeyError) as exc_info:
         requests.get("does not matter")
     assert exc_info.value.args[0] == "coconut"
-    assert exc_info.typename == "keyError"
+    assert exc_info.typename == "KeyError"
     assert mocked.called_once()
 
 

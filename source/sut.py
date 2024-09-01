@@ -1,4 +1,6 @@
+from typing import Optional
 
+Numeric = Optional[int, float]
 
 class SystemUnderTest:
 
@@ -6,7 +8,16 @@ class SystemUnderTest:
         pass
 
     @staticmethod
-    def function(value):
+    def function(value: Numeric|None) -> Numeric|None:
+        """Function that returns the double of a numeric
+
+        Returns:
+            int or float depending on the input, None if None
+
+        Raises:
+            TypeError if unexpected type
+
+        """
         if value is None:
             return None
         if not isinstance(value, (int, float)):

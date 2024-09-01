@@ -2,7 +2,7 @@ import requests
 from delayed_assert import assert_expectations, expect
 
 
-def test_delayed_response(requests_mock):
+def test_delayed_response_with_error(requests_mock):
     url = "http://tests.com"
     requests_mock.get(url, json={"key": "value"})
 
