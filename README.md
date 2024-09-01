@@ -1,4 +1,4 @@
-# Effective testing with Python 
+# Effective testing with Python
 
 Samples of pytest tests and a slide presentation explaining how to
 do effecting testing with Pytest and Python. Slides are in Spanish and
@@ -23,9 +23,9 @@ Attribution is appreciated
 
 ## Glossary
 
-* fixture: generated artifact to use in a test, could be data, an object, ...
-* factory: function to generate a fixture
-* sut: system under testing
+- fixture: generated artifact to use in a test, could be data, an object, ...
+- factory: function to generate a fixture
+- sut: system under testing
 
 ## Usage
 
@@ -36,31 +36,31 @@ pytest -m unit
 
 ## External documentation
 
-https://docs.pytest.org/
-https://github.com/dadoomer/markdown-slides
-
+[Pytest docs](https://docs.pytest.org/)
+[Markdown slides for RevealJS](https://github.com/dadoomer/markdown-slides)
 
 ## Development
 
 ### Project Structure
 
-* [source/](source/): dummy code
-* [tests/](tests/)
-  * Usual folders by domain and type:
-    * types: smoke for sanity tests, unit, integration, api ..
-    * domain: depends on your project
-    * folder naming is used to run tests by tag later (python -m yourtag)
+- [source/](source/): dummy code
+- [tests/](tests/)
+  - Usual folders by domain and type:
+    - types: smoke for sanity tests, unit, integration, api ..
+    - domain: depends on your project
+    - folder naming is used to run tests by tag later (python -m yourtag)
 
 #### Test samples
 
-* [Smoke tests](tests/smoke/)
-* [Unit tests](tests/unit/)
-  * delayed assert: sometimes is useful to run several tests over the same execution,
+- [Smoke tests](tests/smoke/)
+- [Unit tests](tests/unit/)
+  - delayed assert: sometimes is useful to run several tests over the same execution,
     but we still one to see them as separated ones
 
 ## Recommended plugins and libraries
 
 Highly recommended:
+
 - Faker: fake data generator
 - factoryboy and polifactory: Mother or Object factory libraries
 - freezegun: stops and moves time at will, use with caution
@@ -69,10 +69,9 @@ Highly recommended:
 
 Some are already installed, see [Pipfile](Pipfile)
 
-* deep diff: advanced diff library that allow you to customize your diff, 
+- deep diff: advanced diff library that allow you to customize your diff,
    especially for complex structures like dicts. Among other features you
-   you can ignore keys, take order into account or not, ect.
-* *time diff and ranges*: arrow, pendulum, deloream, maya, moment, timeago, when.
-* Some are really  useful to complex time ranges or concepts like: a week from 
-* today, next
-   monday, last Sunday of the previous month, etc.
+   can ignore keys, take order into account or not, ect.
+- *time diff and ranges*: arrow, pendulum, deloream, maya, moment, timeago, when.
+- Some are really  useful to complex time ranges or concepts like: a week from
+   today, next monday, last Sunday of the previous month, etc.
